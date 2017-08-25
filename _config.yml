@@ -16,7 +16,7 @@
 title: Auxilus
 email: raghavsphadme@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
-  At this site i'll host some of my torrents, you can download this torrent files and download it using your fevorite client (uTorrent, Flud etc.)
+  At this site I'll host some of my torrents. You can download these torrent files using your favourite client. E.g.: uTorrent, Flud etc.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
