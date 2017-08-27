@@ -1,0 +1,12 @@
+Package: extract
+Version: 0.1
+Architecture: all
+Maintainer: @Auxilus
+Description: universal file extractor!
+Homepage: https://github.com/Auxilus
+Depends: tar,zip
+Provides: tar,zip
+Conflicts: vim-python-git
+Filename: dists/termux/extras/binary-all/extract_0.1_all.deb
+Size: 932
+SHA256: a91cc9561d661e6ad0a90fdfcb2b0e34c0ed7300c173df77be0dced3695aa649
