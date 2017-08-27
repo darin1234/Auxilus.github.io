@@ -10,3 +10,16 @@ Conflicts: vim-python-git
 Filename: dists/termux/extras/binary-all/extract_0.1_all.deb
 Size: 932
 SHA256: a91cc9561d661e6ad0a90fdfcb2b0e34c0ed7300c173df77be0dced3695aa649
+
+Package: test
+Version: 0.1
+Architecture: all
+Maintainer: @Auxilus
+Description: universal file extractor!
+Homepage: https://github.com/Auxilus
+Depends: tar,zip
+Provides: tar,zip
+Conflicts: vim-python-git
+Filename: dists/termux/extras/binary-all/test_0.1_all.deb
+Size: 728
+SHA256: 3b1a2baf5f8e07bb2dc12276bae9e7b3b946f361d3556356c76adbcd846c3f69
