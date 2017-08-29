@@ -11,6 +11,19 @@ Filename: dists/termux/extras/binary-all/extract_0.1_all.deb
 Size: 932
 SHA256: a91cc9561d661e6ad0a90fdfcb2b0e34c0ed7300c173df77be0dced3695aa649
 
+Package: survival
+Version: 0.1
+Architecture: all
+Maintainer: @Auxilus
+Description: Survival manual
+Homepage: https://github.com/Auxilus
+Depends: man
+Provides: man
+Conflicts: vim-python-git
+Filename: dists/termux/extras/binary-all/survival_0.1_all.deb
+Size: 3964
+SHA256: 7c79bcec00552022a0ed7fcb2a65559ab092bd5c5fcf98843cdddf38b756b82a
+
 Package: test
 Version: 0.1
 Architecture: all
