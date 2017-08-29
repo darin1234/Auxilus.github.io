@@ -26,21 +26,6 @@ echo "\n"
 echo "Installing nokogiri\n"
 gem install nokogiri -- --use-system-libraries
 
-echo "\n"
-echo "installing Network_interface"
-cd $HOME
-gem unpack network_interface
-cd network_interface-0.0.1
-sed 's|git ls-files|find -type f|' -i network_interface.gemspec
-curl -L https://wiki.termux.com/images/6/6b/Netifaces.patch -o netifaces.patch
-patch -p1 < netifaces.patch
-
-echo "\n"
-echo "Building gem\n"
-gem build network_interface.gemspec
-gem install network_interface-0.0.1.gem
-cd ..
-rm -r network_interface-0.0.1
 
 echo "\n"
 echo "Installing grpc"
