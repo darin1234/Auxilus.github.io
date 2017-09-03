@@ -12,8 +12,8 @@ cd $HOME
 #wget https://github.com/Auxilus/Auxilus.github.io/blob/master/4.14.21.tar.gz
 #tar -xf 4.14.21.tar.gz 
 curl -LO https://github.com/rapid7/metasploit-framework/archive/4.16.2.tar.gz
-tar -xf 4.16.2.tar.gz
-mv metasploit-framework-4.16.2 metasploit-framework
+tar -xf 4.16.4.tar.gz
+mv metasploit-framework-4.16.4 metasploit-framework
 #git clone https://github.com/rapid7/metasploit-framework --depth 1
 cd metasploit-framework
 sed '/rbnacl/d' -i Gemfile.lock
