@@ -1,0 +1,14 @@
+{
+  "name": "shebang",
+  "version": "0.1",
+  "arch": "all",
+  "maintainer": "@Auxilus",
+  "description": "Simple shebang creator for your files",
+  "homepage": "https://github.com/Auxilus",
+  "depends": [],
+  "provides": [],
+  "conflicts": ["vim-python-git"],
+  "files" : {
+    "bin/shebang.sh": "bin/shebang"
+  }
+}
