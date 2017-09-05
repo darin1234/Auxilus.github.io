@@ -11,6 +11,17 @@ Filename: dists/termux/extras/binary-all/extract_0.1_all.deb
 Size: 932
 SHA256: a91cc9561d661e6ad0a90fdfcb2b0e34c0ed7300c173df77be0dced3695aa649
 
+Package: shebang
+Version: 0.1
+Architecture: all
+Maintainer: @Auxilus
+Description: Simple shebang creator for your files
+Homepage: https://github.com/Auxilus
+Conflicts: vim-python-git
+Filename: dists/termux/extras/binary-all/shebang_0.1_all.deb
+Size: 964
+SHA256: c345444955a9d0f5b69ce589f4a794c9b5e0cc881d66aeb9efcd2518471a8b3e
+
 Package: survival
 Version: 0.1
 Architecture: all
