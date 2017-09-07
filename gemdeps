@@ -1,4 +1,3 @@
-    
 actionpack -v 4.2.6
 activerecord -v 4.2.6
 activesupport -v 4.2.6
