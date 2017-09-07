@@ -1,8 +1,8 @@
-    metasploit-framework -v  4.16.4
-      actionpack -v 4.2.6
-      activerecord -v 4.2.6
-      activesupport -v 4.2.6
-      backports
+    
+actionpack -v 4.2.6
+activerecord -v 4.2.6
+activesupport -v 4.2.6
+backports
       bcrypt
       bcrypt_pbkdf
       bit-struct
