@@ -33,4 +33,5 @@ cd $HOME/metasploit-framework
 bundle install -j5
 
 $PREFIX/bin/find -type f -executable -exec termux-fix-shebang \{\} \;
+rm ./modules/auxiliary/gather/http_pdf_authors.rb
 ln -s $HOME/metasploit-framework/msfconsole /data/data/com.termux/files/usr/bin/
