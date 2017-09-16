@@ -3,7 +3,7 @@
 apt update
 apt install -y autoconf bison clang coreutils curl findutils git apr apr-util libffi-dev libgmp-dev libpcap-dev \
     postgresql-dev readline-dev libsqlite-dev openssl-dev libtool libxml2-dev libxslt-dev ncurses-dev pkg-config \
-    postgresql-contrib wget make ruby-dev libgrpc-dev termux-tools ncurses-utils ncurses unzip zip tar
+    postgresql-contrib wget make ruby-dev libgrpc-dev termux-tools ncurses-utils ncurses unzip zip tar postgresql
 
 cd $HOME
 curl -LO https://github.com/rapid7/metasploit-framework/archive/4.16.4.tar.gz
@@ -32,6 +32,19 @@ rm -r grpc-1.4.1
 cd $HOME/metasploit-framework
 bundle install -j5
 
+echo -e "\e[1;34m[+] Gems installed"
 $PREFIX/bin/find -type f -executable -exec termux-fix-shebang \{\} \;
 rm ./modules/auxiliary/gather/http_pdf_authors.rb
 ln -s $HOME/metasploit-framework/msfconsole /data/data/com.termux/files/usr/bin/
+
+echo -e "\e[1;32m[.] Creating database"
+
+cd $HOME/metasploit-framework/config
+curl -LO https://Auxilus.github.io/database.yml
+
+mkdir -p $PREFIX/var/lib/postgresql
+initdb $PREFIX/var/lib/postgresql
+
+pg_ctl -D $PREFIX/var/lib/postgresql start
+createuser msf
+createdb msf_database
