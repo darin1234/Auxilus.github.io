@@ -1,5 +1,5 @@
 --- ./opensshlib/explicit_bzero.c
-+++ ./opensshlib/explicit_bzero
++++ ./opensshlib/explicit_bzero.c
 @@ -1,5 +1,3 @@
 -/* OPENBSD ORIGINAL: lib/libc/string/explicit_bzero.c */
 -/*	$OpenBSD: explicit_bzero.c,v 1.1 2014/01/22 21:06:45 tedu Exp $ */

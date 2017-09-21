@@ -1,5 +1,5 @@
---- cipher.c
-+++ cipher
+--- ./opensshlib/cipher.c
++++ ./opensshlib/cipher.c
 @@ -363,7 +363,6 @@
  			goto bad;
  		}
