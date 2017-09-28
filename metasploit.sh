@@ -13,9 +13,9 @@ cd $HOME/metasploit-framework
 sed '/rbnacl/d' -i Gemfile.lock
 sed '/rbnacl/d' -i metasploit-framework.gemspec
 gem install bundler
+sed 's|nokogiri (1.*)|nokogiri (1.8.0)|g' -i Gemfile.lock
 
-
-gem install nokogiri -- --use-system-libraries
+gem install nokogiri -v'1.8.0' -- --use-system-libraries
  
 sed 's|grpc (.*|grpc (1.4.1)|g' -i $HOME/metasploit-framework/Gemfile.lock
 gem unpack grpc -v 1.4.1
@@ -32,12 +32,12 @@ rm -r grpc-1.4.1
 cd $HOME/metasploit-framework
 bundle install -j5
 
-echo -e "\e[1;34m[+] Gems installed"
+echo "Gems installed"
 $PREFIX/bin/find -type f -executable -exec termux-fix-shebang \{\} \;
 rm ./modules/auxiliary/gather/http_pdf_authors.rb
 ln -s $HOME/metasploit-framework/msfconsole /data/data/com.termux/files/usr/bin/
 
-echo -e "\e[1;32m[.] Creating database"
+echo "Creating database"
 
 cd $HOME/metasploit-framework/config
 curl -LO https://Auxilus.github.io/database.yml
