@@ -1,14 +1,9 @@
 ---
 layout: post
-title:  "Post, Post, Post"
+title:  "Auxilus"
 date:   2017-08-25 12:07:17 +0530
-categories: jekyll update
+categories: post
 ---
-First post!
-Jekyll offers, among many other things, powerful support for code snippets:
-
-Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
-
-[jekyll-docs]: https://jekyllrb.com/docs/home
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-talk]: https://talk.jekyllrb.com/
+---
+Check out >
+[Auxilus@github]: https:// github.com/Auxilus
