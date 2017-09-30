@@ -6,4 +6,4 @@ categories: post
 ---
 ---
 Check out >
-[Auxilus@github]: https:// github.com/Auxilus
+[Auxilus@github](https:// github.com/Auxilus) 
