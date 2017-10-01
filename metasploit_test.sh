@@ -1,54 +1,95 @@
-#!/data/data/com.termux/files/usr/bin/sh
+#!/data/data/com.termux/files/usr/bin/bash
 
-echo "installing Prequisities \n"
-apt update && apt upgrade
-apt install autoconf bison clang coreutils curl findutils git apr apr-util libffi-dev libgmp-dev libpcap-dev \
-    postgresql-dev readline-dev libsqlite-dev openssl-dev libtool libxml2-dev libxslt-dev ncurses-dev pkg-config \
-    postgresql-contrib wget make ruby-dev libgrpc-dev termux-tools ncurses-utils ncurses unzip zip tar
-echo "\n"
-echo "cloning Metasploit framework\n"
-cd $HOME
-#wget https://github.com/Auxilus/Auxilus.github.io/blob/master/4.14.21.tar.gz
-#tar -xf 4.14.21.tar.gz 
-curl -LO https://github.com/rapid7/metasploit-framework/archive/4.16.2.tar.gz
-tar -xf 4.16.4.tar.gz
-mv metasploit-framework-4.16.4 metasploit-framework
-#git clone https://github.com/rapid7/metasploit-framework --depth 1
-cd metasploit-framework
-sed '/rbnacl/d' -i Gemfile.lock
-sed '/rbnacl/d' -i metasploit-framework.gemspec
-echo "\n"
-echo "Installing bundler"
-gem install bundler
+function deps() {
+	apt update
+	apt install -y autoconf bison clang coreutils curl findutils git apr apr-util libffi-dev libgmp-dev libpcap-dev postgresql-dev readline-dev libsqlite-dev openssl-dev libtool libxml2-dev libxslt-dev ncurses-dev pkg-config postgresql-contrib wget make ruby-dev libgrpc-dev termux-tools ncurses-utils ncurses unzip zip tar postgresql
 
-echo "\n"
-echo "Installing nokogiri\n"
-gem install nokogiri -- --use-system-libraries
+}
 
+function grab_msf() {
+	cd $HOME
+	if [ -e $HOME/4.16.4.tar.gz ]
+	then
+		if [ -e $HOME/metasploit-framework ]
+		then
+			echo "metasploit source already exists"
+		else
+			tar -xf $HOME/4.16.4.tar.gz
+		fi
+	else
+		curl -LO https://github.com/rapid7/metasploit-framework/archive/4.16.4.tar.gz
+		tar -xf $HOME/4.16.4.tar.gz
+	fi
 
-echo "\n"
-echo "Installing grpc"
-sed 's|grpc (.*|grpc (1.4.1)|g' -i $HOME/metasploit-framework/Gemfile.lock
-gem unpack grpc -v 1.4.1
-cd grpc-1.4.1
-curl -LO https://raw.githubusercontent.com/grpc/grpc/v1.4.1/grpc.gemspec
-curl -L https://wiki.termux.com/images/b/bf/Grpc_extconf.patch -o extconf.patch
-patch -p1 < extconf.patch
-gem build grpc.gemspec
-gem install grpc-1.4.1.gem
-cd ..
-rm -r grpc-1.4.1
+	mv $HOME/metasploit-framework-4.16.4 $HOME/metasploit-framework
+	cd $HOME/metasploit-framework
+}
 
-echo "\n"
-echo "Installig gems\n"
-cd $HOME/metasploit-framework
-bundle install -j5
+function gems() {
 
+	sed '/rbnacl/d' -i Gemfile.lock
+	sed '/rbnacl/d' -i metasploit-framework.gemspec
+	
+	gem install bundler
+	
+	#nokogiri installation
+	sed 's|nokogiri (1.*)|nokogiri (1.8.0)|g' -i Gemfile.lock
+	gem install nokogiri -v'1.8.0' -- --use-system-libraries
 
-echo "\n"
-echo "Performing shebang fix"
+	#gRPC instalation
+	sed 's|grpc (.*|grpc (1.4.1)|g' -i $HOME/metasploit-framework/Gemfile.lock
+	gem unpack grpc -v 1.4.1
+	cd grpc-1.4.1
+	curl -LO https://raw.githubusercontent.com/grpc/grpc/v1.4.1/grpc.gemspec
+	curl -L https://wiki.termux.com/images/b/bf/Grpc_extconf.patch -o extconf.patch
+	patch -p1 < extconf.patch
+	gem build grpc.gemspec
+	gem install grpc-1.4.1.gem
+	cd ..
+	rm -r grpc-1.4.1
+
+	cd $HOME/metasploit-framework
+	bundle install -j5
+
+	echo "Gems installed"
+}
 $PREFIX/bin/find -type f -executable -exec termux-fix-shebang \{\} \;
+rm ./modules/auxiliary/gather/http_pdf_authors.rb
+ln -s $HOME/metasploit-framework/msfconsole /data/data/com.termux/files/usr/bin/
 
-echo "\n"
-echo "Type ./msfconsole to start metasploit"
-cd $HOME/metasploit-framework
+function db() {
+	echo "Creating database"
+
+	cd $HOME/metasploit-framework/config
+	curl -LO https://Auxilus.github.io/database.yml
+
+	mkdir -p $PREFIX/var/lib/postgresql
+	initdb $PREFIX/var/lib/postgresql
+
+	pg_ctl -D $PREFIX/var/lib/postgresql start
+	createuser msf
+	createdb msf_database
+}
+
+function main() {
+	if [ $# -lt 2 ]
+	then
+		deps
+		grab_msf
+		gems
+		db
+	elif [ $1 == "--without-deps" ]
+	then
+		grab_msf
+		gems
+		db
+	elif [ $1 == "without-grab" ]
+		deps
+		gems
+		db
+	elif [ $1 == "--without-gems" ]
+		deps
+		grab_msf
+		db
+	fi
+}
