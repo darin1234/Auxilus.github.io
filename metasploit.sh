@@ -36,6 +36,7 @@ echo "Gems installed"
 $PREFIX/bin/find -type f -executable -exec termux-fix-shebang \{\} \;
 rm ./modules/auxiliary/gather/http_pdf_authors.rb
 ln -s $HOME/metasploit-framework/msfconsole /data/data/com.termux/files/usr/bin/
+ln -s $HOME/metasploit-framework/msfvenom /data/data/com.termux/files/usr/bin/
 
 echo "Creating database"
 
