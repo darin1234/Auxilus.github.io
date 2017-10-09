@@ -3,7 +3,7 @@
 apt update
 apt install -y autoconf bison clang coreutils curl findutils git apr apr-util libffi-dev libgmp-dev libpcap-dev \
     postgresql-dev readline-dev libsqlite-dev openssl-dev libtool libxml2-dev libxslt-dev ncurses-dev pkg-config \
-    postgresql-contrib wget make ruby-dev libgrpc-dev termux-tools ncurses-utils ncurses unzip zip tar postgresql
+    postgresql-contrib wget make ruby-dev libgrpc-dev termux-tools ncurses-utils ncurses unzip zip tar postgresql termux-elf-cleaner
 
 cd $HOME
 curl -LO https://github.com/rapid7/metasploit-framework/archive/4.16.4.tar.gz
@@ -38,6 +38,7 @@ rm ./modules/auxiliary/gather/http_pdf_authors.rb
 ln -s $HOME/metasploit-framework/msfconsole /data/data/com.termux/files/usr/bin/
 ln -s $HOME/metasploit-framework/msfvenom /data/data/com.termux/files/usr/bin/
 
+termux-elf-cleaner /data/data/com.termux/files/usr/lib/ruby/gems/2.4.0/gems/pg-0.20.0/lib/pg_ext.so
 echo "Creating database"
 
 cd $HOME/metasploit-framework/config
