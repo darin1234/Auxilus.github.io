@@ -76,7 +76,7 @@ execute(){
   spin &
   pid=$!
 
-  deps
+  deps > /dev/null
   fetch
   rbnacl
   bundler
