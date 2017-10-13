@@ -100,7 +100,7 @@ spin(){
 }
 
 
-if [ $1 == "-d" ]; then
+if [ "$1" == "-d" ]; then
 	
         deps
 	fetch
