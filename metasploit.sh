@@ -1,6 +1,6 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
-msfvar=4.16.11
+msfvar=4.16.12
 
 apt update
 apt install -y autoconf bison clang coreutils curl findutils git apr apr-util libffi-dev libgmp-dev libpcap-dev \
