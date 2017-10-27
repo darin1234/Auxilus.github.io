@@ -40,7 +40,7 @@ then
 	cd ..
 	rm -r grpc-1.4.1
 else
-	echo "grpc already installec"
+	echo "grpc already installed"
 fi
 
 cd $msfpath/metasploit-framework
@@ -53,8 +53,8 @@ rm ./modules/auxiliary/gather/http_pdf_authors.rb
 if [ -e $PATH/bin/msfconsole ];then
 	rm $PATH/bin/msfconsole
 fi
-if [ -e $PATH/bin/msfvenom ];the
-	rm $PATH/bin/msfveno
+if [ -e $PATH/bin/msfvenom ];then
+	rm $PATH/bin/msfvenom
 fi
 ln -s $msfpath/metasploit-framework/msfconsole /data/data/com.termux/files/usr/bin/
 ln -s $msfpath/metasploit-framework/msfvenom /data/data/com.termux/files/usr/bin/
