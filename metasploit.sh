@@ -2,8 +2,6 @@
 
 msfvar=4.16.13
 msfpath='/data/data/com.termux/files/home'
-isNokogiri=$(gem list -i "^nokogiri")
-isGrpc=$(gem list -i "^grpc")
 if [ -d "$msfpath/metasploit-framework" ]; then
 	echo "metasploit is installed"
 	exit 1
@@ -19,6 +17,8 @@ cd $msfpath/metasploit-framework
 sed '/rbnacl/d' -i Gemfile.lock
 sed '/rbnacl/d' -i metasploit-framework.gemspec
 gem install bundler
+isNokogiri=$(gem list -i "^nokogiri")
+isGrpc=$(gem list -i "^grpc")
 sed 's|nokogiri (1.*)|nokogiri (1.8.0)|g' -i Gemfile.lock
 if [ $isNokogiri = "false" ];
 then
