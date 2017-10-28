@@ -17,18 +17,22 @@ cd $msfpath/metasploit-framework
 sed '/rbnacl/d' -i Gemfile.lock
 sed '/rbnacl/d' -i metasploit-framework.gemspec
 gem install bundler
-isNokogiri=$(gem list -i "^nokogiri")
-isGrpc=$(gem list -i "^grpc")
+
+isNokogiri=$(gem list nokogiri -i)
+isGrpc=$(gem list grpc -i)
+
 sed 's|nokogiri (1.*)|nokogiri (1.8.0)|g' -i Gemfile.lock
-if [ $isNokogiri = "false" ];
+
+if [ $isNokogiri == "false" ];
 then
       gem install nokogiri -v'1.8.0' -- --use-system-libraries
 else
 	echo "nokogiri already installed"
 fi
+
 sed 's|grpc (.*|grpc (1.4.1)|g' -i $msfpath/metasploit-framework/Gemfile.lock
 
-if [ $isGrpc = "false" ];
+if [ $isGrpc == "false" ];
 then
 	gem unpack grpc -v 1.4.1
 	cd grpc-1.4.1
@@ -74,4 +78,4 @@ createdb msf_database
 
 
 
-echo "you can directly use msfvenom or msfconsole rather than ./msfvenom or ./msfconsole as they are symlinked to $PREFIX/bin""
+echo "you can directly use msfvenom or msfconsole rather than ./msfvenom or ./msfconsole as they are symlinked to $PREFIX/bin"
