@@ -1,5 +1,19 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
+sha='75ff9e7ca84a04f1a8b6465b7e74a24814854c6c3543c23a2b90303bf65c7f9c'
+cwd=$(pwd)
+name=$(basename "$0")
+export msfinst="$cwd/$name"
+sha_actual=$(sha256sum $(echo $msfinst))
+#echo $sha_actual
+if [ $sha != "$sha_actual" ]; then
+	echo "[-] wrong checksum"
+	echo "[-] Please do not use third-party stolen scripts"
+	exit 1
+else
+	echo "[+] sha match"
+fi
+
 msfvar=4.16.13
 msfpath='/data/data/com.termux/files/home'
 if [ -d "$msfpath/metasploit-framework" ]; then
